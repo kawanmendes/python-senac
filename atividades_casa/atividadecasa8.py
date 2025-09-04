@@ -37,3 +37,4 @@ def jogo_da_forca():
         print(f"\nParabéns! Você adivinhou a palavra: {palavra}")
     else:
         print(f"\nVocê perdeu! A palavra era: {palavra}")
+jogo_da_forca()        
