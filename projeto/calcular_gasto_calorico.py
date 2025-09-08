@@ -29,5 +29,5 @@ def opções_de_treino():
      if treinos == "4":
         print("Saindo...")
     
-opções_de_treino()        
+     
             

@@ -16,4 +16,3 @@ def frequencia_cardiaca():
         print(f"Sua zona de queima de gordura é entre: {zona_cardio1:} e {zona_cardio2:} bpm")
 
 
-frequencia_cardiaca()

@@ -22,4 +22,3 @@ def calcular_imc():
         print("vc esta com sobrepeso")
     else:
         print("vc esta obeso")    
-calcular_imc()
