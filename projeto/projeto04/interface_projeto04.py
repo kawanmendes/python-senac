@@ -8,7 +8,6 @@ class Menu:
             print(" menu livros [1]")
             print("menu leitores [2]")
             print("menu emprestimos[3]")       
-          
             menu_global = input("escolha a opção:")
 
             if menu_global == '2' :

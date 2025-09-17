@@ -1,40 +1,27 @@
-# importa o módulo datetime para trabalhar com datas
 import datetime
 
-# cria a classe Item
 class Item:
-    # define os atributos da classe Item
     def __init__(self, nome, quantidade):
         self.nome = nome
         self.quantidade = quantidade
     
-    # define o método str para retornar uma string representando o objeto
     def __str__(self):
         return f'{self.nome} - {self.quantidade}'
 
-# cria a classe ListaCompras
 class ListaCompras:
-    # define os atributos da classe ListaCompras
     def __init__(self, nome_lista):
         self.nome_lista = nome_lista
         self.data = datetime.date.today() # retorna data atual do sistema e atribui ao atributo data 
         self.itens = [] # lista vazia para armazenar os itens
     
-    # define os métodos da classe ListaCompras
-    # método para adicionar um item à lista
     def adicionar_item(self, obj_item: Item):
-        # adiciona o objeto Item à lista de itens
         self.itens.append(obj_item)
 
-    # método para remover um item da lista pelo nome
     def remover_item(self, nome_item):
-        # percorre a lista de itens e remove o item com o nome correspondente
         for i in self.itens:
             if i.nome == nome_item:
                 self.itens.remove(i)
     
-    # método para listar os itens da lista
-    # imprime cada item da lista
     def listar_itens(self):
         for i in self.itens:# percorre a lista de itens
             print(i) # imprime o item (chama o método __str__ da classe Item)
