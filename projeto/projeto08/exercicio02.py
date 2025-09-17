@@ -10,11 +10,11 @@ class Aluno:
 
     def calcular_media(self):
         if len(self.notas) == 0:
-            return 0  
-        soma = sum(self.notas)
-        quantidade = len(self.notas)
-        resultado = soma / quantidade
-        return resultado
+            return f'nao a notas cadastradas para calcular a media'
+        else:
+
+            resultado = sum(self.notas) /  len(self.notas)
+            return resultado
 
     def __str__(self):
         return (
