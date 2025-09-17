@@ -9,7 +9,7 @@ class lampada :
     def desligado(self):
         self.desligado = True
     def alternar(self):
-        if self.ligado == False:
+        if self.ligado is False:
             self.ligado = True
             self.desligado = False
     def __str__(self):

@@ -15,11 +15,12 @@ class carrinho :
     def total(self):
         if len(self.lista_produtos) == 0:
             return 0  
+        
         soma = sum(produto.preco for produto in self.lista_produtos)
         return soma
     def __str__(self):
         produtos_str = ", ".join(str(p) for p in self.lista_produtos)
-        return f'Produtos: [{produtos_str}] | Total: R${self.total():.2f}'
+        return f'carrinho esta com os produtos: {produtos_str} | Total: R${self.total():.2f}'
     
 carrinho1 = carrinho()
 carrinho1.adicionar_produto(produto('arroz', 10))

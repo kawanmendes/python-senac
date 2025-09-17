@@ -1,7 +1,6 @@
 class Leitor :
     
-    leitores = []
-
+    leitores = []    
 
     def __init__(self, id, nome , telefone):
         self.id = id
@@ -101,8 +100,6 @@ class Livro:
                 else:
                     print(f"o livro {livro} nao esta disponivel no momento")   
                     return False   
-
-
 class Emprestimo :
      Emprestimos = []
      def __init__(self, data_emprestimo, data_devolucao, livro : Livro  ,leitor : Leitor):
