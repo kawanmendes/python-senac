@@ -91,13 +91,16 @@ class Livro:
     def __str__(self):
         return f"ISBN: {self.isbn}, Título: {self.titulo}, Autores: {self.autores}, Edição: {self.edicao}, Quantidade de Exemplares: {self.qtd_exemplar}"
     
-    def verificar_disponibilidade(self , qtd_exemplar):
-        if self.qtd_exemplar > 0 :
-            print(f'o livro {self.titulo} esta disponivel')
-            return True
-        else:
-            print(f'o livro {self.titulo} nao esta disponivel')
-            return False
+    def verificar_disponibilidade(self, isbn):
+        for livro in Livro.livros:
+            if livro.isbn == isbn:
+                if livro.qtd_exemplar > 0:
+                 print(f"o livro {livro} esta disponivel c")   
+                 return True
+                
+                else:
+                    print(f"o livro {livro} nao esta disponivel no momento")   
+                    return False   
 
 
 class Emprestimo :
@@ -110,12 +113,15 @@ class Emprestimo :
        self.Emprestimos.append(self)
 
      def registrar_emprestimo(self, data_emprestimo, data_devolucao, livro : Livro  ,leitor : Leitor):  
-        if livro.verificar_disponibilidade(livro.qtd_exemplar):
-            novo_emprestimo = Emprestimo(data_emprestimo, data_devolucao, livro, leitor)
+        if livro.qtd_exemplar > 0:
+            novo_emprestimo = Emprestimo(data_emprestimo, data_devolucao, livro , leitor)
             livro.qtd_exemplar -= 1
-            return f'o emprestimo tera deu certo e tera q ser devolvido em {data_devolucao}'
+            print(f'O livro {livro.titulo} foi emprestado com sucesso para {leitor.nome}.')
+            return novo_emprestimo
         else:
-            print(f'Não é possível registrar o empréstimo. O livro {livro.titulo} não está disponível.')
+            print(f'O livro {livro.titulo} não está disponível para empréstimo.')
+            return None
+
 
      def registrar_devolucao(self ,livro : Livro):
         for emprestimo in Emprestimo.Emprestimos:
@@ -139,15 +145,6 @@ Leitor01 = Leitor(1, 'João Silva', '1234-5678')
 Leitor01.cadastrar_leitor(2, 'Maria Souza', '8765-4321')
 
 
-Emprestimo01 = Emprestimo('2025-08-24', '2025-09-24', Livro01, Leitor01)
-
-
-livro2 = Livro.livros[1]  
-leitor2 = Leitor.leitores[1]  
-Emprestimo02 = Emprestimo('2025-08-25', '2025-09-25', livro2, leitor2)
-
-print("\nTodos os empréstimos:")
-Emprestimo01.lista_emprestimos()
 
 
 
