@@ -1,4 +1,4 @@
-class cliente:
+class Cliente:
     def __init__(self,nome,cpf,email):
         self.nome = nome
         self.cpf = cpf
@@ -9,20 +9,22 @@ class cliente:
         else:
             self.email = email
 
-class conta_bancaria :
-    
-    def __init__(self,numero,cliente,saldo = 0.0):
+class ContaBancaria:
+
+    def __init__(self,numero,cliente: Cliente,saldo = 0.0):
         self.numero = numero
         self.cliente = cliente
         self.saldo = saldo 
 
     def depositar(self,valor):
+        if self.saldo >= valor:
+            raise ValueError("Valor de depósito não pode ser negativo")
         self.saldo += valor
         
     def sacar (self,valor):
      if valor <= self.saldo:
          self.saldo -= valor
-         return f'o saque de {valor} foi realizado da conta'
+         return f'o saque de {valor} foi realizado da conta {self.numero}'
      else:
          return f'o valor e insuficiente '
     def exibir_dados(self):
@@ -33,18 +35,18 @@ class conta_bancaria :
             
 
 
-conta1 = cliente('kawan', '123.456.789-00', 'kawan@email.com')
-conta_bancaria1 = conta_bancaria('001', conta1)
+conta1 = Cliente('kawan', '123.456.789-00', 'kawan@email.com')
+conta_bancaria1 = ContaBancaria('001', conta1)
 conta_bancaria1.depositar(1000)
 print(conta_bancaria1)
 print(conta_bancaria1.exibir_dados())
 print(conta_bancaria1.sacar(500))
 print(conta_bancaria1)
 
-conta2 = cliente('kawan', '123.45688888.789-00', 'kawan@email.com')
-conta_bancaria1 = conta_bancaria('002', conta2)
-conta_bancaria1.depositar(1000)
-print(conta_bancaria1)
-print(conta_bancaria1.exibir_dados())
-print(conta_bancaria1.sacar(500))
-print(conta_bancaria1)
+conta2 = Cliente('kawan', '123.45688888.789-00', 'kawan@email.com')
+conta_bancaria2 = ContaBancaria('002', conta2)
+conta_bancaria2.depositar(1000)
+print(conta_bancaria2)
+print(conta_bancaria2.exibir_dados())
+print(conta_bancaria2.sacar(500))
+print(conta_bancaria2)
