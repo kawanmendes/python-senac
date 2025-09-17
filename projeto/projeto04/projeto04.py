@@ -71,7 +71,7 @@ class Livro:
                 return True
         return False
     
-    def listar_livros(self):
+    def lista_livros(self):
         for livro in self.livros:
             print(livro)
     def deletar_livro(self,isbn):
@@ -98,13 +98,59 @@ class Livro:
         else:
             print(f'o livro {self.titulo} nao esta disponivel')
             return False
+
+
 class Emprestimo :
-     def __init__(self, data_emprestimo, data_devolucao, livro : Livro ,leitor : Leitor):
+     Emprestimos = []
+     def __init__(self, data_emprestimo, data_devolucao, livro : Livro  ,leitor : Leitor):
        self.data_emprestimo = data_emprestimo
        self.data_devolucao = data_devolucao
-       self.livro = livro
+       self.livro = livro 
        self.leitor = leitor
+       self.Emprestimos.append(self)
+
+     def registrar_emprestimo(self, data_emprestimo, data_devolucao, livro : Livro  ,leitor : Leitor):  
+        if livro.verificar_disponibilidade(livro.qtd_exemplar):
+            novo_emprestimo = Emprestimo(data_emprestimo, data_devolucao, livro, leitor)
+            livro.qtd_exemplar -= 1
+            return f'o emprestimo tera deu certo e tera q ser devolvido em {data_devolucao}'
+        else:
+            print(f'Não é possível registrar o empréstimo. O livro {livro.titulo} não está disponível.')
+
+     def registrar_devolucao(self ,livro : Livro):
+        for emprestimo in Emprestimo.Emprestimos:
+            if emprestimo.livro.isbn == livro.isbn:
+                Emprestimo.Emprestimos.remove(emprestimo)
+                livro.qtd_exemplar += 1
+                print(f'O livro {livro.titulo} foi devolvido com sucesso.')
+                return True
+        print(f'Não foi encontrado um empréstimo para o livro {livro.titulo}.')
+        return False
+     def __str__(self):
+        return f"Data de Empréstimo: {self.data_emprestimo}, Data de Devolução: {self.data_devolucao}, Livro: {self.livro.titulo}, Leitor: {self.leitor.nome}"
+     
+     def lista_emprestimos(self):
+        for emprestimo in self.Emprestimos:
+            print(emprestimo)
+
+Livro01 = Livro('1', 'O Senhor dos Anéis', 'J.R.R. Tolkien', '1ª Edição', 5)
+Livro01.cadastrar_livro('2', 'O Código Da Vinci', 'Dan Brown', '2ª Edição', 3)
+Leitor01 = Leitor(1, 'João Silva', '1234-5678')
+Leitor01.cadastrar_leitor(2, 'Maria Souza', '8765-4321')
+
+
+Emprestimo01 = Emprestimo('2025-08-24', '2025-09-24', Livro01, Leitor01)
+
+
+livro2 = Livro.livros[1]  
+leitor2 = Leitor.leitores[1]  
+Emprestimo02 = Emprestimo('2025-08-25', '2025-09-25', livro2, leitor2)
+
+print("\nTodos os empréstimos:")
+Emprestimo01.lista_emprestimos()
 
 
 
-    
+
+
+

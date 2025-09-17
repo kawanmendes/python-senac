@@ -1,6 +1,6 @@
-from calcular_gasto_calorico import *
-from calculo_da_frequencia_cardica import *
-from calculo_de_imc import *
+from projeto.projeto01.calcular_gasto_calorico import *
+from projeto.projeto01.calculo_da_frequencia_cardica import *
+from projeto.projeto01.calculo_de_imc import *
 
 def menu():
         
